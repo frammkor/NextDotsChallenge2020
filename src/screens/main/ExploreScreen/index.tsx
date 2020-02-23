@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, Button} from 'react-native';
 import {connect} from 'react-redux';
-import {fetchCocktails} from '../store/actions/cocktails';
-import DrinkList from '../components/DrinkList';
+import {fetchCocktails} from '../../../store/actions/cocktails';
+import {CocktailList, InputComp} from '../../../components';
+import styles from './styles'
 
 interface Props {
-    fetchCocktails: Function;
+    fetchCocktails : Function;
     cocktailsData : Cocktail[];
     fetchError : string;
     fetchIsLoading : boolean;
@@ -14,8 +15,10 @@ interface Props {
 const ExploreScreen : React.FC < Props > = props => {
 
     const {cocktailsData, fetchIsLoading} = props;
-    const [showList, setShowList] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+    const [showList,
+        setShowList] = useState(false);
+    const [inputValue,
+        setInputValue] = useState('');
 
     const handleCancel = () => {
         setShowList(false);
@@ -38,22 +41,28 @@ const ExploreScreen : React.FC < Props > = props => {
 
     const display = !showList
         ? (
-            <Text>Type to search</Text>
+            <View style={styles.messageContainer}>
+                <Text>Search your favorites drinks by name</Text>
+            </View>
         )
         : (cocktailsData === null
             ? (
-                <Text>Sorry, no drinks with that name</Text>
+                <View style={styles.messageContainer}>
+                    <Text>Sorry, no drinks with that name</Text>
+                </View>
             )
-            : (<DrinkList cocktailsData={cocktailsData}/>));
+            : (<CocktailList cocktailsData={cocktailsData}/>));
 
     return (
-        <View>
+        <View style={styles.exploreScreenContainer}>
+            <InputComp value={inputValue} toSearch={handleChange}/>
             <TextInput
+            
                 value={inputValue}
-                placeholder='Type to start serching'
-                onChangeText={(text) => handleChange(text)}></TextInput>
-            <Button title='CANCEL' onPress={handleCancel}/>
-                {display}
+                placeholder='Type to start searching'
+                onChangeText={(text) => handleChange(text)} />
+            <Button title='CANCEL' onPress={() => handleCancel()}/>
+            {display}
         </View>
     );
 };
