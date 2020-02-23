@@ -18,7 +18,7 @@ const ExploreScreen : React.FC < Props > = props => {
     const [showList,
         setShowList] = useState(false);
     const [inputValue,
-        setInputValue] = useState('');
+        setInputValue] = useState('aaa');
 
     const handleCancel = () => {
         setShowList(false);
@@ -56,11 +56,6 @@ const ExploreScreen : React.FC < Props > = props => {
     return (
         <View style={styles.exploreScreenContainer}>
             <InputComp value={inputValue} toSearch={handleChange}/>
-            <TextInput
-            
-                value={inputValue}
-                placeholder='Type to start searching'
-                onChangeText={(text) => handleChange(text)} />
             <Button title='CANCEL' onPress={() => handleCancel()}/>
             {display}
         </View>
