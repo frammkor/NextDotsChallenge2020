@@ -1,28 +1,27 @@
-import React from 'react'
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
 // SCREENS
 import {HomeScreen, ExploreScreen} from '../screens';
 
 interface navigatorOptions {
-    initialRouteName: string;
-    headerMode: string;
+  initialRouteName: string;
+  headerMode: string;
 }
 
 const navigatorOptions = {
-    initialRouteName: 'Home',
-    headerMode: 'none'
-}
+  initialRouteName: 'Home',
+  headerMode: 'none',
+};
 
 interface stack {
-    Home: React.FC;
-    ExploreScreen: React.FC;
+  Home: React.FC;
+  ExploreScreen: React.FC;
 }
 
 const stack = {
-    HomeScreen,
-    ExploreScreen
+  HomeScreen,
+  ExploreScreen,
 };
-
 
 // const StackNavigator = createStackNavigator(
 //     stack as object,
@@ -30,16 +29,16 @@ const stack = {
 // );
 
 const StackNavigator = createStackNavigator(
-    {
-        //screen identifiers
-        Home: {
-            screen: HomeScreen
-        },
-        Explore: {
-            screen: ExploreScreen
-        }
+  {
+    //screen identifiers
+    Home: {
+      screen: HomeScreen,
     },
-    // navigatorOptions
+    Explore: {
+      screen: ExploreScreen,
+    },
+  },
+  // navigatorOptions
 );
 
 export default StackNavigator;

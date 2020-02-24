@@ -1,16 +1,16 @@
-import { APIConnector } from "..";
-import config from "../../config";
+import {APIConnector} from '..';
+import config from '../../config';
 
-const apiConnector = new APIConnector({ timeout: 50000 });
+const apiConnector = new APIConnector({timeout: 50000});
 
-export default class ServiceConfig {
+export default class CocktailConfig {
   static props: any;
   static get endpoint(): string {
     return `${config.API_URL}/search.php?s=`;
   }
 
   static get cocktails(): string {
-    return `${ServiceConfig.endpoint}`;
+    return `${CocktailConfig.endpoint}`;
   }
 
   static get APIConnector(): APIConnector {

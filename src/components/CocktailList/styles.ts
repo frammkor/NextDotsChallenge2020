@@ -1,9 +1,10 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-    flatListContainer: {
-        paddingBottom: 80
-    },
+  flatListContainer: {
+    flex: 1,
+    paddingBottom: 20,
+  },
 });
 
 export default styles;

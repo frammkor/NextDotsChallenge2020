@@ -1,1 +1,1 @@
-export { appBackground } from './images';
+export {appBackground} from './images';
