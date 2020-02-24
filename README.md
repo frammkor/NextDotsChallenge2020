@@ -30,5 +30,5 @@
 
 ## ScreenShots
 
-<img src="" width="30%" title="Home Screen"/>
-<img src="" width="30%" title="Search Screen"/>
+<img src="https://github.com/frammkor/NextDotsChallenge2020/blob/master/src/assets/images/appPreview01.png?raw=true" width="30%" title="Home Screen"/>
+<img src="https://github.com/frammkor/NextDotsChallenge2020/blob/master/src/assets/images/appPreview02.png?raw=true" width="30%" title="Search Screen"/>
