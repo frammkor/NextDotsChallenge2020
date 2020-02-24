@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
   value: string;
@@ -11,7 +12,8 @@ const InputComponent: React.FC<Props> = props => {
   const {toSearch, value} = props;
   return (
     <View style={styles.inputContainer}>
-      <Text>SEARCH icon</Text>
+      <Icon name="search" size={25} />
+
       <TextInput
         value={value}
         onChangeText={text => toSearch(text)}

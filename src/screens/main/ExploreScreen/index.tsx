@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
 import {fetchCocktails} from '../../../store/actions/cocktails';
 import {CocktailList, InputComponent} from '../../../components';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
   fetchCocktails: Function;
   cocktailsData: Cocktail[];
   fetchError: string;
   fetchIsLoading: boolean;
+  navigation: any;
 }
 
 const ExploreScreen: React.FC<Props> = props => {
-  const {cocktailsData, fetchIsLoading, fetchError} = props;
+  const {cocktailsData, fetchIsLoading, fetchError, navigation} = props;
   const [showList, setShowList] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
@@ -37,26 +39,39 @@ const ExploreScreen: React.FC<Props> = props => {
 
   const display = fetchError ? (
     <View style={styles.messageContainer}>
-      <Text>{fetchError}</Text>
+      <Text style={styles.errorText}>{fetchError}</Text>
     </View>
   ) : !showList ? (
     <View style={styles.messageContainer}>
-      <Text>Search your favorites drinks by name</Text>
+      <Text style={styles.message}>Search your favorites drinks by name</Text>
     </View>
   ) : cocktailsData === null ? (
     <View style={styles.messageContainer}>
-      <Text>Sorry, no drinks with that name</Text>
+      <Text style={styles.message}>There are no drinks with that name</Text>
     </View>
   ) : (
     <CocktailList cocktailsData={cocktailsData} />
   );
 
   return (
-    <View style={styles.exploreScreenContainer}>
+    <SafeAreaView style={styles.exploreScreenContainer}>
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity
+          style={styles.homeButton}
+          onPress={() => navigation.navigate('Home')}>
+          <Icon name="home" size={20} />
+          <Text>HOME</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cancelButton}
+          onPress={() => handleCancel()}>
+          <Text>CANCEL</Text>
+          <Icon name="cancel" size={20} />
+        </TouchableOpacity>
+      </View>
       <InputComponent value={inputValue} toSearch={handleChange} />
-      <Button title="CANCEL" onPress={() => handleCancel()} />
-      {display}
-    </View>
+      <View style={styles.displayContainer}>{display}</View>
+    </SafeAreaView>
   );
 };
 

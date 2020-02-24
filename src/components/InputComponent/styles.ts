@@ -5,12 +5,14 @@ const styles = StyleSheet.create({
     margin: 15,
     minWidth: 300,
     padding: 15,
-    flexDirection: 'row',
-    backgroundColor: 'white',
     borderRadius: 5,
     shadowRadius: 17,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    alignItems: 'center',
   },
   inputTextField: {
+    flex: 1,
     marginLeft: 15,
   },
 });

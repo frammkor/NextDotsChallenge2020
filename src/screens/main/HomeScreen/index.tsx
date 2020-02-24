@@ -1,8 +1,13 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
-import {InputComponent} from '../../../components';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  SafeAreaView,
+} from 'react-native';
 import {appBackground} from '../../../assets';
-import Icon from 'react-native-ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
 
 interface Props {
@@ -14,14 +19,18 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
     navigation.navigate('Explore');
   };
   return (
-    <ImageBackground source={appBackground} style={styles.ImgBackground}>
-      <View style={styles.MainContainer}>
-        <Text>Here goes the logo</Text>
+    <SafeAreaView style={styles.MainContainer}>
+      <ImageBackground source={appBackground} style={styles.ImgBackground}>
         <TouchableOpacity onPress={travel}>
-          <InputComponent />
+          <View style={styles.titleContainer}>
+            <Icon name="search" size={40} />
+            <Text style={styles.titleTextField}>
+              Click here to find the best cocktails
+            </Text>
+          </View>
         </TouchableOpacity>
-      </View>
-    </ImageBackground>
+      </ImageBackground>
+    </SafeAreaView>
   );
 };
 
