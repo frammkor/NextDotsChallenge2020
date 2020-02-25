@@ -7,7 +7,6 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {appBackground} from '../../../assets';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
 
 interface Props {
@@ -23,10 +22,8 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
       <ImageBackground source={appBackground} style={styles.ImgBackground}>
         <TouchableOpacity onPress={travel}>
           <View style={styles.titleContainer}>
-            <Icon name="search" size={40} />
-            <Text style={styles.titleTextField}>
-              Click here to find the best cocktails
-            </Text>
+            <Text style={styles.titleTextField}>Cocktail Finder</Text>
+            <Text style={styles.secondaryText}> Click here to find the best cocktails</Text>
           </View>
         </TouchableOpacity>
       </ImageBackground>

@@ -18,15 +18,18 @@ const styles = StyleSheet.create({
     margin: 15,
     minWidth: 300,
     padding: 15,
-    flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: 5,
     shadowRadius: 17,
   },
   titleTextField: {
+    fontFamily: 'Zapfino',
     textAlign: 'center',
-    flex: 1,
-    marginLeft: 15,
+    textTransform: 'uppercase',
+    fontSize: 14,
+  },
+  secondaryText: {
+    textAlign: 'center',
   },
 });
 
