@@ -5,17 +5,18 @@ import {fetchCocktails} from '../../../store/actions/cocktails';
 import {CocktailList, InputComponent} from '../../../components';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {goToScreen} from '../..';
 
 interface Props {
   fetchCocktails: Function;
-  cocktailsData: Cocktail[];
+  data: Cocktail[];
   fetchError: string;
   fetchIsLoading: boolean;
   navigation: any;
 }
 
 const ExploreScreen: React.FC<Props> = props => {
-  const {cocktailsData, fetchIsLoading, fetchError, navigation} = props;
+  const {data, fetchIsLoading, fetchError, navigation} = props;
   const [showList, setShowList] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
@@ -37,40 +38,56 @@ const ExploreScreen: React.FC<Props> = props => {
     }
   };
 
-  const display = fetchError ? (
-    <View style={styles.messageContainer}>
-      <Text style={styles.errorText}>{fetchError}</Text>
-    </View>
-  ) : !showList ? (
-    <View style={styles.messageContainer}>
-      <Text style={styles.message}>Search your favorites drinks by name</Text>
-    </View>
-  ) : cocktailsData === null ? (
-    <View style={styles.messageContainer}>
-      <Text style={styles.message}>There are no drinks with that name</Text>
-    </View>
-  ) : (
-    <CocktailList cocktailsData={cocktailsData} />
-  );
+  const Display: React.FC = ({data, showList, fetchError}) => {
+    if (!showList) {
+      return (
+        <View style={styles.messageContainer}>
+          <Text style={styles.message}>
+            Search your favorites drinks by name
+          </Text>
+        </View>
+      );
+    }
+
+    if (fetchError) {
+      return (
+        <View style={styles.messageContainer}>
+          <Text style={styles.errorText}>{fetchError}</Text>
+        </View>
+      );
+    }
+
+    if (data.length === 0) {
+      return (
+        <View style={styles.messageContainer}>
+          <Text style={styles.message}>There are no drinks with that name</Text>
+        </View>
+      );
+    }
+
+    if (data) {
+      return <CocktailList cocktailsData={data} />;
+    }
+  };
 
   return (
     <SafeAreaView style={styles.exploreScreenContainer}>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={styles.homeButton}
-          onPress={() => navigation.navigate('Home')}>
+          onPress={() => goToScreen(navigation, 'Home')}>
           <Icon name="home" size={20} />
           <Text>HOME</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cancelButton}
-          onPress={() => handleCancel()}>
+        <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
           <Text>CANCEL</Text>
           <Icon name="cancel" size={20} />
         </TouchableOpacity>
       </View>
       <InputComponent value={inputValue} toSearch={handleChange} />
-      <View style={styles.displayContainer}>{display}</View>
+      <View style={styles.displayContainer}>
+        <Display data={data} showList={showList} fetchError={fetchError} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -79,7 +96,7 @@ const mapStateToProps = (state: any) => {
   const {fetchError, data, fetchIsLoading} = state.cocktailsReducer;
   return {
     fetchError,
-    cocktailsData: data,
+    data,
     fetchIsLoading,
   };
 };

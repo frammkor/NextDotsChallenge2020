@@ -5,6 +5,10 @@ import {
 } from './types';
 import CocktailService from '../../provider/cocktail/CocktailService';
 
+interface response {
+  drinks: Cocktail[];
+}
+
 export const fetchCocktailsStart = (data: string) => {
   return {
     type: FETCH_COCKTAILS_START,
@@ -12,10 +16,21 @@ export const fetchCocktailsStart = (data: string) => {
   };
 };
 
-export const fetchCocktailsSuccess = (data: object) => {
+export const fetchCocktailsSuccess = (response: response) => {
+  const shrinkCocktails = (drink: Cocktail) => {
+    return {
+      strDrinkThumb: drink.strDrinkThumb,
+      strDrink: drink.strDrink,
+      idDrink: drink.idDrink,
+    };
+  };
+  let cocktailsArray: Cocktail[] = [];
+  if (response.drinks) {
+    cocktailsArray = response.drinks.map(shrinkCocktails);
+  }
   return {
     type: FETCH_COCKTAILS_SUCCESS,
-    data,
+    data: cocktailsArray,
   };
 };
 

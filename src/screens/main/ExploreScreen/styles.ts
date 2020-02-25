@@ -1,4 +1,11 @@
 import {StyleSheet} from 'react-native';
+import {theme} from '../../../styles';
+
+const {
+  cancelButtonBackground,
+  homeButtonBackground,
+  errorTextColor,
+} = theme.color;
 
 const styles = StyleSheet.create({
   exploreScreenContainer: {
@@ -19,7 +26,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     shadowRadius: 10,
-    backgroundColor: 'mediumseagreen',
+    backgroundColor: homeButtonBackground,
   },
   cancelButton: {
     alignContent: 'flex-end',
@@ -31,7 +38,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     shadowRadius: 17,
-    backgroundColor: 'crimson',
+    backgroundColor: cancelButtonBackground,
   },
   displayContainer: {
     flex: 1,
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
   errorText: {
     textAlign: 'center',
     fontSize: 25,
-    color: 'red',
+    color: errorTextColor,
   },
   message: {
     textAlign: 'center',

@@ -24,7 +24,7 @@ type Actions =
 export type cocktailsInitialState = {
   fetchError: string;
   fetchIsLoading: boolean;
-  data: Cocktail[] | undefined;
+  data: Cocktail[];
   inputText: string;
 };
 
@@ -39,7 +39,7 @@ export const cocktailsReducer = (
   state: cocktailsInitialState = cocktailsInitialState,
   action: Actions,
 ) => {
-  let {type, data, err} = action;
+  let {type, data} = action;
   switch (type) {
     case FETCH_COCKTAILS_START:
       return {
@@ -51,13 +51,14 @@ export const cocktailsReducer = (
       return {
         ...state,
         fetchIsLoading: false,
-        data: data.drinks,
+        fetchError: '',
+        data,
       };
     case FETCH_COCKTAILS_ERROR:
       return {
         ...state,
         fetchIsLoading: false,
-        fetchError: err,
+        fetchError: 'Ups, something went wrong',
       };
     default:
       return state;

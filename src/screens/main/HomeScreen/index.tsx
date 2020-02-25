@@ -23,7 +23,9 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         <TouchableOpacity onPress={travel}>
           <View style={styles.titleContainer}>
             <Text style={styles.titleTextField}>Cocktail Finder</Text>
-            <Text style={styles.secondaryText}> Click here to find the best cocktails</Text>
+            <Text style={styles.secondaryText}>
+              Click here to find the best cocktails
+            </Text>
           </View>
         </TouchableOpacity>
       </ImageBackground>

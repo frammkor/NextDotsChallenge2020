@@ -8,8 +8,7 @@ interface Props {
   toSearch: Function;
 }
 
-const InputComponent: React.FC<Props> = props => {
-  const {toSearch, value} = props;
+const InputComponent: React.FC<Props> = ({toSearch, value}) => {
   return (
     <View style={styles.inputContainer}>
       <Icon name="search" size={25} />

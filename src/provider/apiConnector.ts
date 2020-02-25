@@ -79,7 +79,7 @@ export default class APIConnector {
           );
         }
         if (!xhr.responseText) {
-          console.log('Upload failed No response payload.'); // eslint-disable-line no-console
+          console.log('Upload failed No response payload.');
           reject(
             new Error(JSON.stringify({code: 500, message: xhr.responseText})),
           );
